@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -40,15 +41,22 @@ class MyHomePage extends StatelessWidget {
     var pair = appState.current;
 
     return Scaffold(
-      body: Column(children: [
-        Text('A random AWESOME idea:'),
-        BigCard(pair: pair),
-        ElevatedButton(
-            onPressed: () {
-              appState.getNext();
-            },
-            child: Text('Next'))
-      ]),
+      body: Center(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          BigCard(pair: pair),
+          SizedBox(
+            height: 10,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                appState.getNext();
+              },
+              child: Text(
+                'Next',
+                style: GoogleFonts.poppins(),
+              ))
+        ]),
+      ),
     );
   }
 }
@@ -64,13 +72,18 @@ class BigCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final style = TextStyle(color: theme.colorScheme.onPrimary);
+    final style = GoogleFonts.poppins(
+        textStyle: TextStyle(
+      color: theme.colorScheme.onPrimary,
+      fontSize: 20.0,
+      fontWeight: FontWeight.w600,
+    ));
 
     return Card(
       color: theme.colorScheme.primary,
       elevation: 5,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(20.0),
         child: Text(
           pair.asLowerCase,
           style: style,
