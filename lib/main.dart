@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = GeneratorPage();
         break;
       case 1:
-        page = Placeholder();
+        page = FavouritesPage();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -109,6 +109,41 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ));
     });
+  }
+}
+
+class FavouritesPage extends StatelessWidget {
+  const FavouritesPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+
+    if (appState.favourites.isEmpty) {
+      return Center(
+        child: Text(
+          'No favourites yet.',
+          style: GoogleFonts.poppins(
+              textStyle:
+                  TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500)),
+        ),
+      );
+    }
+
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Text('You have '
+              '${appState.favourites.length} favourites.'),
+        ),
+        for (var pair in appState.favourites)
+          ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text(pair.asLowerCase),
+          )
+      ],
+    );
   }
 }
 
