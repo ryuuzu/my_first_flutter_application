@@ -69,6 +69,9 @@ class _MyHomePageState extends State<MyHomePage> {
         throw UnimplementedError('no widget for $selectedIndex');
     }
 
+    var navigationMenuTextStyle = GoogleFonts.poppins(
+        textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 14.0));
+
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
           body: Row(
@@ -78,9 +81,17 @@ class _MyHomePageState extends State<MyHomePage> {
             extended: constraints.maxWidth >= 600,
             destinations: [
               NavigationRailDestination(
-                  icon: Icon(Icons.home), label: Text('Home')),
+                  icon: Icon(Icons.home),
+                  label: Text(
+                    'Home',
+                    style: navigationMenuTextStyle,
+                  )),
               NavigationRailDestination(
-                  icon: Icon(Icons.favorite), label: Text('Favourites')),
+                  icon: Icon(Icons.favorite),
+                  label: Text(
+                    'Favourites',
+                    style: navigationMenuTextStyle,
+                  )),
             ],
             selectedIndex: selectedIndex,
             onDestinationSelected: (value) {
@@ -114,6 +125,9 @@ class GeneratorPage extends StatelessWidget {
       icon = Icons.favorite_border;
     }
 
+    var buttonTextStyle = GoogleFonts.poppins(
+        textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 14.0));
+
     return Center(
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         BigCard(pair: pair),
@@ -128,7 +142,10 @@ class GeneratorPage extends StatelessWidget {
                   appState.toggleFavourite();
                 },
                 icon: Icon(icon),
-                label: Text('Like')),
+                label: Text(
+                  'Like',
+                  style: buttonTextStyle,
+                )),
             SizedBox(
               width: 10,
             ),
@@ -138,7 +155,7 @@ class GeneratorPage extends StatelessWidget {
                 },
                 child: Text(
                   'Next',
-                  style: GoogleFonts.poppins(),
+                  style: buttonTextStyle,
                 )),
           ],
         )
