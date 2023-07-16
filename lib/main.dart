@@ -91,37 +91,35 @@ class GeneratorPage extends StatelessWidget {
       icon = Icons.favorite_border;
     }
 
-    return Scaffold(
-      body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          BigCard(pair: pair),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ElevatedButton.icon(
-                  onPressed: () {
-                    appState.toggleFavourite();
-                  },
-                  icon: Icon(icon),
-                  label: Text('Like')),
-              SizedBox(
-                width: 10,
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    appState.getNext();
-                  },
-                  child: Text(
-                    'Next',
-                    style: GoogleFonts.poppins(),
-                  )),
-            ],
-          )
-        ]),
-      ),
+    return Center(
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        BigCard(pair: pair),
+        SizedBox(
+          height: 10,
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ElevatedButton.icon(
+                onPressed: () {
+                  appState.toggleFavourite();
+                },
+                icon: Icon(icon),
+                label: Text('Like')),
+            SizedBox(
+              width: 10,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  appState.getNext();
+                },
+                child: Text(
+                  'Next',
+                  style: GoogleFonts.poppins(),
+                )),
+          ],
+        )
+      ]),
     );
   }
 }
